@@ -6,5 +6,5 @@ url: "https://NAME0x0.github.io"
 
 # Build settings
 markdown: kramdown
-permalink: /:year/:month/:day/:title/
+permalink: /:title/
 show_excerpts: true
