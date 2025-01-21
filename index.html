@@ -3,80 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CST1340 Blog</title>
+    <title>~/blog/CST1340</title>
     <style>
+        :root {
+            --bg: #1a1b26;
+            --fg: #a9b1d6;
+            --accent: #7aa2f7;
+            --folder: #9ece6a;
+            --date: #565f89;
+        }
+
         body {
-            font-family: -apple-system, system-ui, sans-serif;
-            max-width: 680px;
-            margin: 60px auto;
-            padding: 0 20px;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'JetBrains Mono', Monaco, Consolas, monospace;
+            line-height: 1.5;
+            margin: 0;
+            padding: 40px;
         }
 
-        header {
-            margin-bottom: 60px;
+        .explorer {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        h1 {
-            font-size: 2em;
-            margin-bottom: 0;
-        }
-
-        .subtitle {
-            color: #666;
-            margin-top: 5px;
+        .path {
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-size: 0.9em;
         }
 
         .posts {
-            margin-top: 40px;
+            list-style: none;
+            padding: 0;
         }
 
         .post {
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #eee;
+            margin: 8px 0;
+            display: flex;
+            align-items: baseline;
         }
 
-        .post:last-child {
-            border: none;
+        .post::before {
+            content: "📄";
+            margin-right: 10px;
+            color: var(--fg);
+            font-size: 0.9em;
         }
 
         .post-title {
-            font-size: 1.4em;
-            color: #000;
+            color: var(--fg);
             text-decoration: none;
-            font-weight: 600;
+            flex-grow: 1;
         }
 
         .post-title:hover {
-            text-decoration: underline;
+            color: var(--accent);
         }
 
         .post-date {
-            font-size: 0.9em;
-            color: #666;
-            margin: 8px 0;
+            color: var(--date);
+            font-size: 0.8em;
+            margin-left: 20px;
         }
 
-        .post-excerpt {
-            margin-top: 15px;
+        .folder {
+            color: var(--folder);
+            margin-bottom: 15px;
+        }
+
+        .folder::before {
+            content: "📁";
+            margin-right: 10px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Muhammad Afsah Mumtaz</h1>
-        <div class="subtitle">CST1340 Blog</div>
-    </header>
-
-    <main class="posts">
-        {% for post in site.posts %}
-        <article class="post">
-            <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
-            <div class="post-date">{{ post.date | date: "%B %d, %Y" }}</div>
-            <div class="post-excerpt">{{ post.excerpt }}</div>
-        </article>
-        {% endfor %}
-    </main>
+    <div class="explorer">
+        <div class="path">~/blog/CST1340 » Muhammad Afsah Mumtaz</div>
+        <div class="folder">posts/</div>
+        <ul class="posts">
+            {% for post in site.posts %}
+            <li class="post">
+                <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
+                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

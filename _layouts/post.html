@@ -6,61 +6,94 @@
     <title>{{ page.title }}</title>
     <style>
         :root {
-            --text-primary: #2c3e50;
-            --text-secondary: #546e7a;
-            --background: #f8f9fa;
-            --accent: #3498db;
+            --bg: #1a1b26;
+            --fg: #a9b1d6;
+            --accent: #7aa2f7;
+            --date: #565f89;
+            --heading: #bb9af7;
         }
 
         body {
-            font-family: -apple-system, system-ui, sans-serif;
-            max-width: 680px;
-            margin: 60px auto;
-            padding: 0 20px;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'JetBrains Mono', Monaco, Consolas, monospace;
             line-height: 1.6;
-            background: var(--background);
-            color: var(--text-primary);
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .path {
+            color: var(--accent);
+            margin-bottom: 30px;
+            font-size: 0.9em;
         }
 
         .back {
-            margin-bottom: 40px;
-            display: inline-block;
-            color: #666;
+            color: var(--accent);
             text-decoration: none;
+            display: block;
+            margin-bottom: 30px;
         }
 
-        .back:hover {
-            color: #000;
+        .back::before {
+            content: "←";
+            margin-right: 8px;
         }
 
         h1 {
-            font-size: 2em;
-            line-height: 1.2;
+            color: var(--heading);
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
         }
 
         .date {
-            color: #666;
-            margin: 20px 0 40px;
+            color: var(--date);
+            font-size: 0.9em;
+            margin-bottom: 30px;
         }
 
-        img {
+        article {
+            font-size: 1em;
+        }
+
+        article h2 {
+            color: var(--heading);
+            margin-top: 40px;
+        }
+
+        article img {
             max-width: 100%;
-            height: auto;
-            margin: 20px 0;
+            border: 1px solid var(--accent);
         }
 
-        p {
-            margin: 20px 0;
+        code {
+            background: rgba(255,255,255,0.1);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre code {
+            display: block;
+            padding: 15px;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
-    <a href="{{ site.baseurl }}/" class="back">← Back</a>
-    
-    <article>
-        <h1>{{ page.title }}</h1>
-        <div class="date">{{ page.date | date: "%B %d, %Y" }}</div>
-        {{ content }}
-    </article>
+    <div class="container">
+        <div class="path">~/blog/CST1340/posts/{{ page.date | date: "%Y/%m/%d" }}/</div>
+        <a href="{{ site.baseurl }}/" class="back">cd ..</a>
+        
+        <article>
+            <h1>{{ page.title }}</h1>
+            <div class="date">{{ page.date | date: "%Y-%m-%d" }}</div>
+            {{ content }}
+        </article>
+    </div>
 </body>
 </html>
