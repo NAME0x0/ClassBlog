@@ -89,12 +89,14 @@
         <div class="path">~/blog/CST1340 » Muhammad Afsah Mumtaz</div>
         <div class="folder">posts/</div>
         <ul class="posts">
+        {% raw %}
             {% for post in site.posts %}
             <li class="post">
                 <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
                 <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
             </li>
             {% endfor %}
+        {% endraw %}
         </ul>
     </div>
 </body>
