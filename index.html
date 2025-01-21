@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CST1340 Blog</title>
+    <style>
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 680px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .posts {
+            margin-top: 40px;
+        }
+
+        .post {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post:last-child {
+            border: none;
+        }
+
+        .post-title {
+            font-size: 1.4em;
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .post-title:hover {
+            text-decoration: underline;
+        }
+
+        .post-date {
+            font-size: 0.9em;
+            color: #666;
+            margin: 8px 0;
+        }
+
+        .post-excerpt {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Muhammad Afsah Mumtaz</h1>
+        <div class="subtitle">CST1340 Blog</div>
+    </header>
+
+    <main class="posts">
+        {% for post in site.posts %}
+        <article class="post">
+            <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
+            <div class="post-date">{{ post.date | date: "%B %d, %Y" }}</div>
+            <div class="post-excerpt">{{ post.excerpt }}</div>
+        </article>
+        {% endfor %}
+    </main>
+</body>
+</html>

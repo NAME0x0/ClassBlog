@@ -1,0 +1,10 @@
+# Basic settings
+title: Muhammad Afsah Mumtaz
+description: Personal blog for CST1340
+baseurl: "/ClassBlog"
+url: "https://NAME0x0.github.io"
+
+# Build settings
+markdown: kramdown
+permalink: /:title/
+show_excerpts: true

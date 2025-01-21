@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <style>
+        :root {
+            --text-primary: #2c3e50;
+            --text-secondary: #546e7a;
+            --background: #f8f9fa;
+            --accent: #3498db;
+        }
+
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            max-width: 680px;
+            margin: 60px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            background: var(--background);
+            color: var(--text-primary);
+        }
+
+        .back {
+            margin-bottom: 40px;
+            display: inline-block;
+            color: #666;
+            text-decoration: none;
+        }
+
+        .back:hover {
+            color: #000;
+        }
+
+        h1 {
+            font-size: 2em;
+            line-height: 1.2;
+        }
+
+        .date {
+            color: #666;
+            margin: 20px 0 40px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="{{ site.baseurl }}/" class="back">← Back</a>
+    
+    <article>
+        <h1>{{ page.title }}</h1>
+        <div class="date">{{ page.date | date: "%B %d, %Y" }}</div>
+        {{ content }}
+    </article>
+</body>
+</html>
