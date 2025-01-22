@@ -6,98 +6,107 @@
     <title>~/blog/CST1340</title>
     <style>
         :root {
-            --bg: #1a1b26;
-            --fg: #a9b1d6;
-            --accent: #7aa2f7;
-            --folder: #9ece6a;
-            --date: #565f89;
+            --bg: #000000;
+            --fg: #00ff00;
+            --prompt: #00ff00;
+            --accent: #00ff00;
+            --dim: #008800;
         }
 
         body {
             background: var(--bg);
             color: var(--fg);
-            font-family: 'JetBrains Mono', Monaco, Consolas, monospace;
+            font-family: 'Courier New', monospace;
             line-height: 1.5;
             margin: 0;
-            padding: 40px;
+            padding: 20px;
         }
 
-        .explorer {
+        .terminal {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
+            padding: 20px;
         }
 
-        .path {
-            color: var(--accent);
-            margin-bottom: 30px;
-            font-size: 0.9em;
+        .prompt {
+            color: var(--prompt);
+            margin-bottom: 20px;
         }
 
-        .posts {
-            list-style: none;
-            padding: 0;
+        .prompt::before {
+            content: "$ ";
+            color: var(--dim);
         }
 
-        .post {
-            margin: 8px 0;
-            display: flex;
-            align-items: baseline;
-        }
-
-        .post::before {
-            content: "📄";
-            margin-right: 10px;
-            color: var(--fg);
-            font-size: 0.9em;
-        }
-
-        .post-title {
-            color: var(--fg);
-            text-decoration: none;
-            flex-grow: 1;
-        }
-
-        .post-title:hover {
-            color: var(--accent);
-        }
-
-        .post-date {
-            color: var(--date);
-            font-size: 0.8em;
+        .ls-output {
             margin-left: 20px;
         }
 
-        .folder {
-            color: var(--folder);
-            margin-bottom: 15px;
+        .directory {
+            color: var(--accent);
+            margin-bottom: 10px;
         }
 
-        .folder::before {
-            content: "📁";
+        .directory::before {
+            content: "drwxr-xr-x  ";
+            color: var(--dim);
+        }
+
+        .file {
+            display: flex;
+            margin: 5px 0;
+            text-decoration: none;
+            color: var(--fg);
+        }
+
+        .file::before {
+            content: "-rw-r--r--  ";
+            color: var(--dim);
             margin-right: 10px;
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 20px;
-            }
+        .file:hover {
+            text-decoration: underline;
+        }
+
+        .date {
+            color: var(--dim);
+            margin-left: auto;
+            padding-left: 20px;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background: var(--fg);
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <div class="explorer">
-        <div class="path">~/blog/CST1340 » Muhammad Afsah Mumtaz</div>
-        <div class="folder">posts/</div>
-        <ul class="posts">
-        {% raw %}
+    <div class="terminal">
+        <div class="prompt">pwd</div>
+        <div class="prompt">~/blog/CST1340</div>
+        <div class="prompt">ls -la</div>
+        <div class="ls-output">
+            <div class="directory">.</div>
+            <div class="directory">..</div>
+            <div class="directory">posts</div>
+            {% raw %}
             {% for post in site.posts %}
-            <li class="post">
-                <a href="{{ post.url | relative_url }}" class="post-title">{{ post.title }}</a>
-                <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-            </li>
+            <a href="{{ post.url | relative_url }}" class="file">
+                {{ post.title }}.md
+                <span class="date">{{ post.date | date: "%Y-%m-%d %H:%M" }}</span>
+            </a>
             {% endfor %}
-        {% endraw %}
-        </ul>
+            {% endraw %}
+        </div>
+        <div class="prompt">_<span class="cursor"></span></div>
     </div>
 </body>
 </html>

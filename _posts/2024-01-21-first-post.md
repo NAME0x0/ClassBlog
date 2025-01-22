@@ -1,11 +1,17 @@
 ---
 layout: post
-title: "Getting Started with CST1340"
-date: 2024-01-21
+title: "Week-1-Introduction"
+date: 2024-01-21 09:00:00
 ---
 
-First blog post for CST1340. This will test our Jekyll setup.
+First week of CST1340.
 
-## Introduction
+## Topics Covered
 
-Main content starts here...
+- Course Introduction
+- Setting up development environment
+- Initial concepts
+
+## Notes
+
+Main content goes here...

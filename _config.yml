@@ -5,7 +5,7 @@ baseurl: "/ClassBlog"
 url: ""
 
 # Basic Jekyll settings
-markdown: GFM
+markdown: kramdown
 highlighter: rouge
 permalink: /:title/
 show_excerpts: true
