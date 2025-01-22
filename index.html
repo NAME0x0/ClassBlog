@@ -3,110 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>~/blog/CST1340</title>
-    <style>
-        :root {
-            --bg: #000000;
-            --fg: #00ff00;
-            --prompt: #00ff00;
-            --accent: #00ff00;
-            --dim: #008800;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--fg);
-            font-family: 'Courier New', monospace;
-            line-height: 1.5;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .terminal {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .prompt {
-            color: var(--prompt);
-            margin-bottom: 20px;
-        }
-
-        .prompt::before {
-            content: "$ ";
-            color: var(--dim);
-        }
-
-        .ls-output {
-            margin-left: 20px;
-        }
-
-        .directory {
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .directory::before {
-            content: "drwxr-xr-x  ";
-            color: var(--dim);
-        }
-
-        .file {
-            display: flex;
-            margin: 5px 0;
-            text-decoration: none;
-            color: var(--fg);
-        }
-
-        .file::before {
-            content: "-rw-r--r--  ";
-            color: var(--dim);
-            margin-right: 10px;
-        }
-
-        .file:hover {
-            text-decoration: underline;
-        }
-
-        .date {
-            color: var(--dim);
-            margin-left: auto;
-            padding-left: 20px;
-        }
-
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background: var(--fg);
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-    </style>
+    <title>CST1340 Blog</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="terminal">
-        <div class="prompt">pwd</div>
-        <div class="prompt">~/blog/CST1340</div>
-        <div class="prompt">ls -la</div>
-        <div class="ls-output">
-            <div class="directory">.</div>
-            <div class="directory">..</div>
-            <div class="directory">posts</div>
+    <main>
+        <header>
+            <h1>CST1340</h1>
+            <p>Academic Blog by Muhammad Afsah Mumtaz</p>
+        </header>
+
+        <section class="posts">
             {% raw %}
             {% for post in site.posts %}
-            <a href="{{ post.url | relative_url }}" class="file">
-                {{ post.title }}.md
-                <span class="date">{{ post.date | date: "%Y-%m-%d %H:%M" }}</span>
-            </a>
+            <article class="post-card">
+                {% if post.image %}
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                {% endif %}
+                <div class="post-content">
+                    <time>{{ post.date | date: "%B %d, %Y" }}</time>
+                    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                    <p>{{ post.excerpt }}</p>
+                </div>
+            </article>
             {% endfor %}
             {% endraw %}
-        </div>
-        <div class="prompt">_<span class="cursor"></span></div>
-    </div>
+        </section>
+    </main>
 </body>
 </html>
