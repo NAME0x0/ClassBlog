@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "Week-1-Introduction"
-date: 2024-01-21 09:00:00
+title: "First Week: Introduction to CST1340"
+date: 2024-01-21
 ---
 
-First week of CST1340.
+First week's introduction to CST1340. Here's what we covered:
 
-## Topics Covered
+## Key Topics
 
-- Course Introduction
-- Setting up development environment
-- Initial concepts
+1. Course Overview
+2. Module Structure
+3. Assessment Methods
 
 ## Notes
 

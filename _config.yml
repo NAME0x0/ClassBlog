@@ -1,11 +1,26 @@
 # Basic settings
-title: Muhammad Afsah Mumtaz
-description: CST1340 Blog
+title: CST1340 Blog
+author: Muhammad Afsah Mumtaz
+description: Academic Blog for CST1340
 baseurl: "/ClassBlog"
-url: ""
+url: "https://NAME0x0.github.io"
 
-# Basic Jekyll settings
+# Build settings
 markdown: kramdown
-highlighter: rouge
 permalink: /:title/
-show_excerpts: true
+
+exclude: [".git", ".gitignore", "README.md"]
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
