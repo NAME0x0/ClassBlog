@@ -1,47 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CST1340 Blog</title>
-    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <title>{{ site.title }}</title>
+    <style>
+        :root { --bg: #fff; --text: #000; --hover: #0366d6; }
+        @media (prefers-color-scheme: dark) {
+            :root { --bg: #000; --text: #fff; --hover: #58a6ff; }
+        }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            line-height: 1.6;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: var(--bg);
+            color: var(--text);
+        }
+        .header { margin-bottom: 40px; }
+        .posts { list-style: none; padding: 0; }
+        .post-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #0002;
+            border-radius: 4px;
+        }
+        .post-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        .post-link:hover { color: var(--hover); }
+        .post-date {
+            color: var(--text);
+            opacity: 0.7;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <header>
-            <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
-            <h1>CST1340</h1>
-            <p>Academic Blog by Muhammad Afsah Mumtaz</p>
-        </header>
+    <div class="header">
+        <h1>{{ site.title }}</h1>
+        <p>{{ site.author }}</p>
+    </div>
 
-        <section class="posts">
-            {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-            {% for post in sorted_posts %}
-            <article class="post-card">
-                <div class="post-content">
-                    <time>{{ post.date | date: "%Y-%m-%d" }}</time>
-                    <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-                </div>
-            </article>
-            {% endfor %}
-        </section>
-    </main>
-
-    <script>
-        const toggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        // Check saved theme or system preference
-        const savedTheme = localStorage.getItem('theme') || 
-            (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        html.setAttribute('data-theme', savedTheme);
-
-        toggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-    </script>
+    <ul class="posts">
+        {% for post in site.posts %}
+        <li class="post-item">
+            <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            <div class="post-date">{{ post.date | date: "%Y-%m-%d" }}</div>
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

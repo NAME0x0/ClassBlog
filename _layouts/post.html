@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <style>
+        :root { --bg: #fff; --text: #000; --link: #0366d6; }
+        @media (prefers-color-scheme: dark) {
+            :root { --bg: #000; --text: #fff; --link: #58a6ff; }
+        }
+        body {
+            font-family: -apple-system, system-ui, sans-serif;
+            line-height: 1.6;
+            max-width: 650px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background: var(--bg);
+            color: var(--text);
+        }
+        .back { color: var(--link); text-decoration: none; }
+        .back:hover { text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+        pre { overflow-x: auto; padding: 1em; background: #0001; }
+        code { font-family: monospace; }
+        h1, h2, h3 { line-height: 1.2; }
+    </style>
 </head>
 <body>
-    <main>
-        <article class="post">
-            <a href="{{ site.baseurl }}/" class="back">← Back</a>
-            <h1>{{ page.title }}</h1>
-            <time>{{ page.date | date: "%B %d, %Y" }}</time>
-            {{ content }}
-        </article>
-    </main>
+    <a href="{{ site.baseurl }}/" class="back">← Back to posts</a>
+    <article>
+        <h1>{{ page.title }}</h1>
+        <time>{{ page.date | date: "%Y-%m-%d" }}</time>
+        {{ content }}
+    </article>
 </body>
 </html>
